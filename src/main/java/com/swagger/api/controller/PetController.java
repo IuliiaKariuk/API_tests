@@ -5,16 +5,15 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class PetController extends BaseController {
+    private RequestSpecification petApi(){
+        return petStoreApiClient("/pet");
+    }
     public Response addNewPetToStore(PetDto petDto) {
         return petApi()
                 .body(petDto)
                 .post();
     }
-
     public Response getPetById(Long targetPetId){
-        return petApi().get("{/targetPetId})", targetPetId);
-    }
-    private RequestSpecification petApi(){
-        return petStoreApiClient("/pet");
+        return petApi().get("/{targetPetId})", targetPetId);
     }
 }

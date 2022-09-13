@@ -1,17 +1,20 @@
 package com.swagger.api.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-
-public class PetDto{
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PetDto {
 
 	@JsonProperty("photoUrls")
 	private List<String> photoUrls;
@@ -33,22 +36,24 @@ public class PetDto{
 
 	@Data
 	@NoArgsConstructor
-	@Builder
 	@AllArgsConstructor
-
-	public static class Category{
+	@Builder
+	public static class Category {
 
 		@JsonProperty("name")
 		private String name;
 
 		@JsonProperty("id")
 		private int id;
+
 	}
+
+
 	@Data
 	@NoArgsConstructor
 	@Builder
 	@AllArgsConstructor
-	public static class TagsItem{
+	public static class TagsItem {
 
 		@JsonProperty("name")
 		private String name;
@@ -57,4 +62,5 @@ public class PetDto{
 		private int id;
 
 	}
+
 }
