@@ -1,5 +1,5 @@
 {
-  "id": 0,
+  "id": "{petId}",
   "category": {
     "id": 0,
     "name": "string"
