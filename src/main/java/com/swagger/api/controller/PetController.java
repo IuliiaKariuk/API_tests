@@ -1,12 +1,12 @@
 package com.swagger.api.controller;
 
+import com.swagger.api.controller.common.ResponseAssertion;
 import com.swagger.petstore.models.Pet;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class PetController extends BaseController {
-
 
     private RequestSpecification petApi() {
         return petStoreApiClient("/pet");
@@ -17,8 +17,15 @@ public class PetController extends BaseController {
         return petApi().body(petDto).post();
     }
 
-    public Response getPetById(Long targetPetId) {
-        return petApi().get("/{targetPetId}", targetPetId);
+    public ResponseAssertion getPetById(Long targetPetId) {
+        var getPetResponse = petApi().get("/{targetPetId}", targetPetId);
+        return new ResponseAssertion(getPetResponse);
+    }
+
+    @Step("Updat besdfklj by id")
+    public ResponseAssertion updatBesdfkljById(Long id) {
+        var updatBesdfkljByIdResponse = petApi().post();
+        return new ResponseAssertion(updatBesdfkljByIdResponse);
     }
 
 }
